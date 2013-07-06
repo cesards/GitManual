@@ -25,8 +25,9 @@ Work flow
 ---------
 Your local repository is composed by three "trees", managed by git. The first one is your "Working folder" that contains all files. The second one is the "Index" which plays a middle area rol, and finally "HEAD" wich points to last commit released
 
-<img src="https://github.com/m3n0R/GitManual/blob/master/resources/flow.png">
-
+<a href="https://github.com/m3n0R/GitManual/blob/master/resources/flow.png" alt="Flow">
+  <img src="https://github.com/m3n0R/GitManual/blob/master/resources/flow.png">
+</a>
 
 
 
