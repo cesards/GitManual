@@ -1,7 +1,6 @@
 Git Manual
 ==========
-Gracias a la ayuda de:
-<href="http://pcottle.github.io/learnGitBranching">
+Here is a small Git guide, created because we usually use prepared software for working with repositories, but after we should be able to know command line git instructions. It's much better than any other UI client! :-) 
 
 Repository initialization
 ---------------------------
@@ -24,8 +23,15 @@ git clone username@host:/path/to/repo //We create a remote copy of the repositor
 
 Work flow
 ---------
+Your local repository is composed by three "trees", managed by git. The first one is your "Working folder" that contains all files. The second one is the "Index" which plays a middle area rol, and finally "HEAD" wich points to last commit released
+
+<img src="https://github.com/m3n0R/GitManual/blob/master/resources/flow.png">
 
 
+
+
+
+===================================================== 
 
 
 
