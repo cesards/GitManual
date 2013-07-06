@@ -1,17 +1,33 @@
 Git Manual
 ==========
 Gracias a la ayuda de:
-<a href="http://pcottle.github.io/learnGitBranching"></a>
+<href="http://pcottle.github.io/learnGitBranching">
 
-Repositorios
-------------
-```java
-git init
-git add . //Marca todos los ficheros para el próximo commit
-git commit -m <COMMIT> //Crea nuevo commit con los ficheros marcados
-$git clone /path/to/repo //crea una copia local del repositorio
-$git clone username@host:/path/to/repo //crea una copia remota del repositorio
+Repository initialization
+---------------------------
 ```
+touch README.md
+git init
+git add README.md
+```
+or, if you've already all your project initialized
+```
+git add . //Check all files to next commit
+git commit -m COMMIT //It creates a new commit
+git remote add origin URL //We add a remote, as https://github.com/m3n0R/GitManual.git
+```
+There is another way to initialize a repository
+```
+git clone /path/to/repo //We create a local copy of the repository
+git clone username@host:/path/to/repo //We create a remote copy of the repository
+```
+
+Work flow
+---------
+
+
+
+
 
 Ramas
 -----
@@ -20,8 +36,8 @@ Para crear ramas hay varias formas de hacerlo:
 * Mediante la instrucción ```git branch``` --> Crea una nueva branch pero te deja apuntando a la que estabas.
 ```java
 git branch // muestra todas las ramas
-git branch <BRANCH> //crea una nueva branch
-git branch -b <BRANCH> //crea una nueva branch y la hace la branch activa. Aunque también se puede hacer git branch y después git checkout <BRANCH>
+git branch BRANCH //crea una nueva branch
+git branch -b BRANCH //crea una nueva branch y la hace la branch activa. Aunque también se puede hacer git branch y después git checkout <BRANCH>
 git branch <BRANCH> <COMMIT> // crea la rama a partir del commit dado.
 git branch -b <BRANCH> <COMMIT> //crea la rama a partir del commit dado y hacerle checkout
 git branch -m <actual> <nuevo> //renombra la rama
@@ -31,7 +47,7 @@ git branch -m <actual> <nuevo> //renombra la rama
 Repositorios remotos
 --------------------
 ```java
-git push origin <BRANCH> // Hacemos un push al remote origin
+git push origin <BRANCH> // Hacemos un push al remote origin, BRANCH suele ser master
 ``
 
 
