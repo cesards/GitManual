@@ -88,7 +88,7 @@ git branch -m CURRENT_BRANCH NEW_BRANCH //it renames current branch to new branc
 git checkout BRANCH //it points to branch desired(HEAD)
 git checkout COMMIT //it points to commit desired(HEAD)
 git rebase BRANCH //it includes BRANCH commit logs to our current branch
-````
+```
 
 Tags
 ----
