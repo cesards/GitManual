@@ -65,7 +65,7 @@ git diff SOURCE_BRANCH TARGET_BRANCH
 If we want to fetch data and merge after that, we could use
 ```
 git pull --rebase
-```
+``
 
 Branches
 --------
@@ -94,7 +94,7 @@ Tags
 ----
 It's recommended to create tags for every software published version, using
 ```
-git tag 1.0.0 *COMMIT_ID* //where *COMMIT_ID* is 10 chars of the commit id which you want to refer with your tag, for example 1b2e1d63ff
+git tag 1.0.0 * COMMIT_ID * //where *COMMIT_ID* is 10 chars of the commit id which you want to refer with your tag, for example 1b2e1d63ff
 ```
 You can get commit id with the following instruction
 ```
@@ -134,7 +134,7 @@ git add -i
 
 Examples
 -----------
-*Example 1
+* Example 1
 ```
 git commit
 git commit
