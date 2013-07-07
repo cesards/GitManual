@@ -65,7 +65,7 @@ git diff SOURCE_BRANCH TARGET_BRANCH
 If we want to fetch data and merge after that, we could use
 ```
 git pull --rebase
-``
+```
 
 Branches
 --------
