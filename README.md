@@ -105,9 +105,9 @@ Replace local changes
 ---------------------
 You can replace local changes using
 ```
-git checkout -- *FILENAME*
+git checkout -- FILENAME
 ```
-This command replace changes in your current folder with the last work of *HEAD*. Both changes and files already added to Index will be without changes. If you want to undo local changes and commits, you can bring las server version and point to your main copy
+This command replace changes in your current folder with the last work of HEAD. Both changes and files already added to Index will be without changes. If you want to undo local changes and commits, you can bring las server version and point to your main copy
 ```
 git fetch origin
 git reset --hard origin/master
@@ -135,6 +135,7 @@ git add -i
 Examples
 -----------
 * Example 1
+
 ```
 git commit
 git commit
@@ -145,10 +146,12 @@ git merge master
 git checkout master
 git commit
 git commit
+```
+![Example 1 Flow](https://raw.github.com/m3n0r/gitManual/master/resources/example_1.png)
+```
 git rebase bugFix
 git commit
 ```
-![Example 1 Flow](https://raw.github.com/m3n0r/gitManual/master/resources/example_1.png)
 
 
 ===================================================== 
