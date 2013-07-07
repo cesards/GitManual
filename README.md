@@ -134,7 +134,7 @@ git add -i
 
 Examples
 -----------
-* Example 1
+### Example 1
 
 ```
 git commit
@@ -154,9 +154,10 @@ git commit
 ```
 
 
-===================================================== 
-=====================================================
-=====================================================
+***
+***
+***
+
 This manual could not be possible withou the help of the following pages:
 * [Learn Git Branching][page_1]
 * [Git guida rápida][page_2]
