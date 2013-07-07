@@ -1,4 +1,4 @@
-Git Manual
+Git Manual (NOT FINISHED)
 ==========
 Here is a small Git guide, created because we usually use prepared software for working with repositories, but after we should be able to know command line git instructions. It's much better than any other UI client! :-) 
 
@@ -26,9 +26,25 @@ Work flow
 Your local repository is composed by three "trees", managed by git. The first one is your "Working folder" that contains all files. The second one is the "Index" which plays a middle area rol, and finally "HEAD" wich points to last commit released
 
 <a href="https://github.com/m3n0R/GitManual/blob/master/resources/flow.png" alt="Flow">
-  <img src="https://github.com/m3n0R/GitManual/blob/master/resources/flow.png">
+  <img src="http://img689.imageshack.us/img689/8113/x8ik.png">
 </a>
 
+
+Basic actions
+-------------
+We can propose changes to "Index" using
+```
+git add FILE_NAME
+```
+or
+```
+git add *
+```
+After that, we can commit our changes
+```
+git commit -m COMMIT
+```
+Now the file is included in HEAD, but it's not in the repository yet.
 
 
 
