@@ -63,7 +63,7 @@ git add FILENAME
 Before merging changes, you could also review them using
 ```
 git diff SOURCE_BRANCH TARGET_BRANCH
-``
+```
 Branches
 --------
 There are different ways to create branches
