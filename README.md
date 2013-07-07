@@ -25,7 +25,7 @@ Work flow
 ---------
 Your local repository is composed by three "trees", managed by git. The first one is your "Working folder" that contains all files. The second one is the "Index" which plays a middle area rol, and finally "HEAD" wich points to last commit released
 
-![Flow](https://github.com/m3n0R/GitManual/blob/master/resources/flow.png)
+![Flow](https://raw.github.com/m3n0r/gitManual/master/resources/flow.png)
 
 
 Basic actions
@@ -65,7 +65,7 @@ git diff SOURCE_BRANCH TARGET_BRANCH
 If we want to fetch data and merge after that, we could use
 ```
 git pull --rebase
-```
+``
 
 Branches
 --------
@@ -148,7 +148,7 @@ git commit
 git rebase bugFix
 git commit
 ```
-![Example 1 Flow](https://github.com/m3n0R/GitManual/blob/master/resources/example_1.png)
+![Example 1 Flow](https://raw.github.com/m3n0r/gitManual/master/resources/example_1.png)
 
 
 ===================================================== 
