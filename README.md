@@ -44,121 +44,96 @@ After that, we can commit our changes
 ```
 git commit -m COMMIT
 ```
-Now the file is included in HEAD, but it's not in the repository yet.
+Now the file is included in HEAD, but it's not in the repository yet. To send data to repository execute
+```
+git push REMOTE BRANCH
+```
+To refresh your local repository to newest commit, execute
+```
+git pull
+```
+To merge another branch to your current active branch (for example master), do
+```
+git merge BRANCH
+```
+If there are conflicts, you have to solve them manually edditing thos files. After that, you should check them as merged, with
+```
+git add FILENAME
+```
+Before merging changes, you could also review them using
+```
+git diff SOURCE_BRANCH TARGET_BRANCH
 
+Branches
+--------
+There are different ways to create branches
+```
+git checkout -b BRANCH//new branch created and it points to this
+```
+or
+```
+git branch BRANCH /new branch created and it points to your current branch, not this
+```
+Other instructions
+```
+git branch -d BRANCH //it deletes a branch
+git branch //it shows all branches
+git branch -b BRANCH //new branch created and it points to this. You can do the same doing git checkout BRANCH after git branch
+git branch BRANCH COMMIT //it creates a branch from the given commit
+git branch -b BRANCH COMMIT //it creates a branch from the given commit and can do checkout to this (it points to this)
+git branch -m CURRENT_BRANCH NEW_BRANCH //it renames current branch to new branch name 
+````
 
-
-===================================================== 
-
-
-
-Ramas
------
-Para crear ramas hay varias formas de hacerlo:
-* Mediante la instrucción ```git checkout -b``` --> Crea una nueva branch y apunta a ésta.
-* Mediante la instrucción ```git branch``` --> Crea una nueva branch pero te deja apuntando a la que estabas.
-```java
-git branch // muestra todas las ramas
-git branch BRANCH //crea una nueva branch
-git branch -b BRANCH //crea una nueva branch y la hace la branch activa. Aunque también se puede hacer git branch y después git checkout <BRANCH>
-git branch <BRANCH> <COMMIT> // crea la rama a partir del commit dado.
-git branch -b <BRANCH> <COMMIT> //crea la rama a partir del commit dado y hacerle checkout
-git branch -m <actual> <nuevo> //renombra la rama
+Tags
+----
+It's recommended to create tags for every software published version, using
+```
+git tag 1.0.0 COMMIT_ID //where COMMIT_ID is 10 chars of the commit id which you want to refer with your tag, for example 1b2e1d63ff
+```
+You can get commit id with the following instruction
+```
+git log
 ```
 
+Replace local changes
+---------------------
+You can replace local changes using
+```
+git checkout -- FILENAME
+```
+This command replace changes in your current folder with the last work of HEAD. Both changes and files already added to Index will be without changes. If you want to undo local changes and commits, you can bring las server version and point to your main copy
+```
+git fetch origin
+git reset --hard origin/master
+```
 
-Repositorios remotos
---------------------
-```java
-git push origin <BRANCH> // Hacemos un push al remote origin, BRANCH suele ser master
-``
+Useful data
+-----------
+UI by default
+```
+gitk
+```
+Special colors for console
+```
+git config color.ui true
+```
+Show only a line for every commit in the trace
+```
+git config format.pretty oneline
+```
+Add files in interactive way
+```
+git add -i
+```
 
+===================================================== 
+=====================================================
+=====================================================
+This manual could not be possible withou the help of the following pages:
+* [Learn Git Branching][page_1]
+* [Git guida rápida][page_2]
+* [Git - la guía sencilla][page_3]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="http://img27.imageshack.us/img27/1590/screen1es.png" alt="Screen 1">
-  <img src="http://img27.imageshack.us/img27/1590/screen1es.png">
-</a>
-
-
-Try out the sample application
-
-<a href="https://play.google.com/store/apps/details?id=com.manuelpeinado.multichoiceadapter.demo">
-  <img alt="Android app on Google Play"
-       src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
-</a>
-
-Or browse the [source code of the sample application][1] for a complete example of use.
-
-
-
-
-
-Alternatively, you can, of course, use the ID of an existing app.
-
-In either case, you will also need to associate your Android key hash with the app. Click 'Edit App' and open up the 'Native Android App' section at the bottom of the dashboard. Add the key hash that you obtained at the end of the previous step with the keytool app.
-
-<a>
-  <img src="https://fbcdn-dragon-a.akamaihd.net/cfs-ak-ash3/676658/827/440884335967686-/Screen%20Shot%202012-10-17%20at%2010.45.03%20PM.png" />
-</a>
-
-Save this change.
-
-You will also need to return to this dashboard and add your app's package name and main activity class once you have created a new Android project itself.
-
-2 - In your App
-
-* Register the package and activity with Facebook
-
-At this point, you should return to the App Dashboard on the Facebook Developers site and add your Android app's package and activity names to the Android settings. Also enable 'Facebook Login':
-
-
-
-
-
-
-License
--------
-
-Copyright 2013 m3n0R
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
-[1]: https://github.com/m3n0R/EasyFacebookConnect/tree/master/EasyFacebookConnect-Samples
-
-
-
-
-
+[page_1]: http://pcottle.github.io/learnGitBranching
+[page_2]: http://www.edy.es/dev/docs/git-guia-rapida
+[page_3]: http://rogerdudler.github.io/git-guide/index.es.html
