@@ -88,6 +88,7 @@ git branch -m CURRENT_BRANCH NEW_BRANCH //it renames current branch to new branc
 git checkout BRANCH //it points to branch desired(HEAD)
 git checkout COMMIT //it points to commit desired(HEAD)
 git rebase BRANCH //it includes BRANCH commit logs to our current branch
+git rebase CURRENT_BRANCH ANOTHER_BRANCH //we point the last commit to the desired branch
 ```
 
 Tags
@@ -152,6 +153,37 @@ git commit
 git rebase bugFix
 git commit
 ```
+
+#### Example 2
+__Description__
+_We want the commits to all be in sequential order. So this means that our final tree should have C7' at the bottom, C6' above that, etc etc, etc all in order_
+```
+git commit
+git checkout -b bugFix C1
+git commit
+git checkout -b side C0
+git commit
+git commit
+git commit
+git checkout -b another C5
+git commit
+git checkout master
+```
+![Example 2 Solution 1](https://raw.github.com/m3n0r/gitManual/master/resources/example_2_solution_1.png)
+__Solution__
+```
+git checkout bugFix
+git rebase master
+```
+![Example 2 Solution 2](https://raw.github.com/m3n0r/gitManual/master/resources/example_2_solution_2.png)
+```
+git checkout side    
+git rebase bugFix 
+git checkout another    
+git rebase side    
+git rebase another master
+```
+![Example 2 Solution 3](https://raw.github.com/m3n0r/gitManual/master/resources/example_2_solution_3.png)   
 
 
 ***
