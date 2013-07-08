@@ -134,7 +134,7 @@ git add -i
 
 Examples
 -----------
-### Example 1
+#### Example 1
 
 ```
 git commit
