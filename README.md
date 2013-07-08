@@ -170,6 +170,7 @@ git commit
 git checkout master
 ```
 ![Example 2 Solution 1](https://raw.github.com/m3n0r/gitManual/master/resources/example_2_solution_1.png)
+
 __Solution__
 ```
 git checkout bugFix
