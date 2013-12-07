@@ -5,20 +5,25 @@ Here is a small Git guide, created because we usually use prepared software for 
 Repository initialization
 ---------------------------
 ```
+// Inside the project folder
 touch README.md
 git init
 git add README.md
+// Outside the project folder
+git init <directory>
 ```
 or, if you've already all your project initialized
 ```
-git add . //Check all files to next commit
-git commit -m COMMIT //It creates a new commit
-git remote add origin URL //We add a remote, as https://github.com/m3n0R/GitManual.git
+git add . // Check all files to next commit
+git commit -m COMMIT // It creates a new commit
+git remote add origin URL // We add a remote, as https://github.com/m3n0R/GitManual.git
 ```
 There is another way to initialize a repository
 ```
-git clone /path/to/repo //We create a local copy of the repository
-git clone username@host:/path/to/repo //We create a remote copy of the repository
+git clone <repo> // Clone the repository located at <repo> onto the local machine.
+git clone <repo> <directory> // Clone the repository located at <repo> into the folder called <directory> on the local machine
+// Example: git clone ssh://john@example.com/path/to/my-project.git 
+// cd my-project
 ```
 
 Work flow
