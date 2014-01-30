@@ -14,7 +14,7 @@ git init <directory>
 ```
 or, if you've already all your project initialized
 ```
-git add . // Check all files to next commit
+git add -A . // Check all files to next commit
 git commit -m COMMIT // It creates a new commit
 git remote add origin URL // We add a remote, as https://github.com/m3n0R/GitManual.git
 ```
