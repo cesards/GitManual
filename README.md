@@ -25,6 +25,13 @@ git clone <repo> <directory> // Clone the repository located at <repo> into the 
 // Example: git clone ssh://john@example.com/path/to/my-project.git 
 // cd my-project
 ```
+If we want to add a .gitignore to already initialized repo, we should copy the file and
+```
+git rm -r --cached . // This removes everything from the index
+git add . 
+git commit -m ".gitignore is now working"
+```
+
 
 Work flow
 ---------
