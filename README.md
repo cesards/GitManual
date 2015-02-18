@@ -102,6 +102,20 @@ git checkout COMMIT //it points to commit desired(HEAD)
 git rebase BRANCH //it includes BRANCH commit logs to our current branch
 git rebase CURRENT_BRANCH ANOTHER_BRANCH //we point the last commit to the desired branch
 ```
+Merging an upstream repository into your fork
+```
+git remote add upstream git://github.com/user/repo.git
+git fetch upstream
+git checkout master
+git rebase upstream/master
+```
+Later maintenance
+```java
+git checkout master //in your local repo
+git pull https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git BRANCH_NAME
+// Resolve merge and/or conflicts
+git push origin master
+```
 
 Tags
 ----
