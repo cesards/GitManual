@@ -1,36 +1,406 @@
-Git Manual (NOT FINISHED)
+Git Manual
 ==========
-Here is a small Git guide, created because we usually use prepared software for working with repositories, but after we should be able to know command line git instructions. It's much better than any other UI client! :-) 
+Here is a small Git guide. Created to learn command line git instructions, rather than using GUI tools like SourceTree. There are only some basic and some interesting stuff we could use in our day to day codibg. Enjoy!
 
-Repository initialization
----------------------------
+##### Sources worth to check
+
+__Blogs__
+- [__Thoughtbot Blog__](https://robots.thoughtbot.com/tags/git)
+
+__Courses__
+- [__Mastering Git__](https://upcase.com/mastering-git)
+
+#### Table of Contents
+
+- <a href="#repo_initialization">__Repository initialization__</a>
+- <a href="#branches">__Branches__</a>
+- <a href="#find_bug_navigating_through_commits">__Find bug navigationg through commits__</a>
+- <a href="#git_ignore">__Git ignore__</a>
+  - <a href="#global_git_ignore">__Global__</a>
+  - <a href="#android">__Android__</a>
+  - <a href="#intellij">__IntelliJ__</a>
+  - <a href="#mac_os">__Mac OS__</a>
+  - <a href="#windows">__Windows__</a>
+- <a href="#tips">__Tips__</a>
+<br>
+
+<a name="repo_initialization">
+### Repository initialization
+
+Locally
+```sh
+# Inside the project folder
+$ touch README.md
+$ git init
+$ git add README.md
+# Outside the project folder
+$ git init <directory>
+# START HERE if you have already your project initialized
+$ git add -A .
+$ git commit -m COMMIT
+$ git remote add origin <repo> # Where <repo> could be ssh://john@example.com/path/to/my-project.git 
 ```
-// Inside the project folder
-touch README.md
-git init
-git add README.md
-// Outside the project folder
-git init <directory>
+
+From a cloud repository
+```sh
+$ git clone <repo> # Where <repo> could be ssh://john@example.com/path/to/my-project.git 
+$ git clone <repo> <directory> # Clone the repository located at <repo> into the folder called <directory> on the local machine
 ```
-or, if you've already all your project initialized
+
+If we want to add a .gitignore to already initialized repo, we should do
+```sh
+$ git rm -r --cached . // This removes everything from the index
+$ git add . 
+$ git commit -m ".gitignore is now working"
 ```
-git add -A . // Check all files to next commit
-git commit -m COMMIT // It creates a new commit
-git remote add origin URL // We add a remote, as https://github.com/m3n0R/GitManual.git
+<br>
+
+<a name="branches">
+### Branches
+
+
+
+
+
+
+
+
+<br>
+
+<a name="find_bug_navigating_through_commits">
+### Find bug navigationg through commits
+
+[__Sources__](http://linkbun.ch/03xl5)
+
+Using __`git bisect`__ is a good idea. Is a tool that allows you to find an offending commit. Let’s say you’ve come across a bug in your codebase and you’re unsure of when it was introduced. If you can find a commit where the code works properly and a commit where it doesn’t, you don’t have to trace down the offending commit by hand (__find a particular regression__).
+
+Imagine we have the following history
+
+__`rev1 -- rev2 -- rev3 -- rev4 -- rev5 -- currentRev`__
+
+We know that our program is not working properly at the __`currentRev`__ revision, and that it was working at the revision __`rev1`__. So the regression was introduced in one of the commits, __`rev2`__, __`rev3`__, __`rev4`__, __`rev5`__, __`currentRev`__.
+
+__`git bisect`__ does a binary search. At each step it tries to reduce the number of revisiones that are potentially bad by half.
+
+You can use the command the following way:
+```sh
+$ git stash save
+$ git bisect start
+$ git bisect bad
 ```
-There is another way to initialize a repository
+
+That will mark __`HEAD`__ as a bad commit. Alternatively, you could pass the sha of a specific commit like so:
+```sh
+$ git bisect bad <sha>
 ```
-git clone <repo> // Clone the repository located at <repo> onto the local machine.
-git clone <repo> <directory> // Clone the repository located at <repo> into the folder called <directory> on the local machine
-// Example: git clone ssh://john@example.com/path/to/my-project.git 
-// cd my-project
+
+Then you'll to set a good commit. This will be the last known good commit. These two commands will set the outer bounds of the binary search. After:
+```sh
+$ git bisect good rev1
+Bisecting: 2 revisions left to test after this (roughly 2 steps)
+[< ... sha ... >] rev3
 ```
-If we want to add a .gitignore to already initialized repo, we should copy the file and
+
+Git will split the revisions and load the first guess. In our case, it'll be commit __`rev3`__. You need to build your program, and check whether or not the regression is present. You'll also need to tell git the status of this revision with either git bisect bad if the regression is present, or git bisect good if it is not.
+
+Let's suppose that the regression was introduced in commit __`rev4`__. Then the regression is not present in this revision, and we tell it to git.
+```sh
+$ git bisect good
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[< ... sha ... >] rev5
 ```
-git rm -r --cached . // This removes everything from the index
-git add . 
-git commit -m ".gitignore is now working"
+
+It will then checkout commit __`rev5`__. We need to check if regression is present:
+```sh
+$ git bisect bad
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[< ... sha ... >] rev4
 ```
+We test the last revision, __`rev4`__. And since it is the one that introduced the regression, we tell it to git:
+```sh
+$ git bisect bad
+< ... sha ... > is the first bad commit
+< ... commit message ... >
+```
+
+Over a larger range of commits this saving will be, obviously, greater. __(1 + log2 N)__.
+
+More info:
+- [__Debugging in Git with Blame and Bisect__](http://goo.gl/CJpZSA)
+
+<br>
+
+<a name="git_ignore">
+### Git ignore
+
+<a name="global_git_ignore">
+#### Global
+
+[__Source__](https://robots.thoughtbot.com/global-gitignore)
+
+Set a __`.gitignore`__ file to apply across all projects on your local machine with:
+```sh
+$ git config --global core.excludesfile ~/.gitignore
+```
+
+It can be useful to ignore files in each project you work on but not every of your teammates on the project necessary need them.
+
+<br>
+
+<a name="android">
+#### Android
+```sh
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+project.properties
+*.DS_Store
+tmp
+
+## Proguard folder generated by Eclipse
+proguard/
+
+# Android studio
+.idea/
+*.iml
+
+## Intellij project files
+*.ipr
+*.iws
+*.idea
+*/target
+
+#Gradle
+build/
+.gradle/
+
+#Maven
+target
+release.properties
+pom.xml.*
+```
+
+<br>
+
+<a name="intellij">
+#### InbtelliJ
+
+```sh
+*.iml
+*.ipr
+*.iws
+.idea/
+```
+
+<br>
+
+<a name="mac_os">
+#### Mac OS
+
+```sh
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+```
+
+<br>
+
+<a name="windows">
+#### Windows
+
+```sh
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+```
+
+<br>
+
+<a name="tips">
+### Tips
+
+__Use `.gitconfig` to save some important changes and aliases__
+
+[__Source__](https://robots.thoughtbot.com/push-the-current-git-branch-even-if-youve-never)
+
+The first time you push a git branch to a remote, you have to be explicit the first time:
+```sh
+$ git push origin my-branch-name
+```
+
+Every time after that, a simple git push will work fine. But there’s a setting for __`.gitconfig`__  that will let you just push without needing that initial explicitness:
+
+```sh
+[push]
+  # Push current branch even if you've never pushed it before
+	default = current
+```
+
+We can also play with commit messages automation, setting a template using __`.gitmessage`__.
+```sh
+[commit]
+  template = ~/.gitmessage
+```
+
+Then create the template using __`*`__ for gaps.
+```
+Commit Title
+
+Related issue:
+*
+Related feature:
+*
+```
+
+There are other options worth se checking:
+```sh
+[core]
+	excludesfile = /Users/user/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = User
+	email = user@mail.com
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+```
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git mergetool -t meld
+
+
+Normal merge conflict for 'README':
+  {local}: modified
+  {remote}: modified
+
+Hit return to start merge resolution tool (meld):
+You would then see:
+
+
+Configure Git For Your Mergetool Of Choice
+
+To configure git to remember which merge tool you want, type git config –global merge.tool [tool]. For example, if you want git mergetool to automatically use kdiff3 as our mergetool, we would type:
+
+$ git config --global merge.tool kdiff3
+
+
+
+
+
+ADD A REMOTE (original copy from the project)
+
+You probably have a "remote" for each repository. You need to pull from the one remote and push to the other.
+
+If you originally cloned from your fork, that remote will be called "origin". If you haven't added it already, you'll need to add the first guy's repository as another remote:
+
+git remote add firstguy git://github.com/firstguy/repo.git
+After that's all set up, you should indeed be able to
+
+git pull firstguy master
+git push origin
+
+OR
+
+git fetch upstream
+git checkout master
+
+Merge the changes from upstream/master into your local master branch. This brings your fork's master branch into sync with the upstream repository, without losing your local changes.
+git merge upstream/master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Work flow
@@ -77,44 +447,6 @@ git diff SOURCE_BRANCH TARGET_BRANCH
 If we want to fetch data and merge after that, we could use
 ```
 git pull --rebase
-```
-
-Branches
---------
-There are different ways to create branches
-```
-git checkout -b BRANCH//new branch created and it points to this
-```
-or
-```
-git branch BRANCH /new branch created and it points to your current branch, not this
-```
-Other instructions
-```
-git branch -d BRANCH //it deletes a branch
-git branch //it shows all branches
-git branch -b BRANCH //new branch created and it points to this. You can do the same doing git checkout BRANCH after git branch
-git branch BRANCH COMMIT //it creates a branch from the given commit
-git branch -b BRANCH COMMIT //it creates a branch from the given commit and can do checkout to this (it points to this)
-git branch -m CURRENT_BRANCH NEW_BRANCH //it renames current branch to new branch name 
-git checkout BRANCH //it points to branch desired(HEAD)
-git checkout COMMIT //it points to commit desired(HEAD)
-git rebase BRANCH //it includes BRANCH commit logs to our current branch
-git rebase CURRENT_BRANCH ANOTHER_BRANCH //we point the last commit to the desired branch
-```
-Merging an upstream repository into your fork
-```
-git remote add upstream git://github.com/user/repo.git
-git fetch upstream
-git checkout master
-git rebase upstream/master
-```
-Later maintenance
-```java
-git checkout master //in your local repo
-git pull https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git BRANCH_NAME
-// Resolve merge and/or conflicts
-git push origin master
 ```
 
 Tags
