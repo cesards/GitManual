@@ -27,7 +27,7 @@ __Courses__
 <a name="repo_initialization">
 ### Repository initialization
 
-Locally
+__Locally__
 ```sh
 # Inside the project folder
 $ touch README.md
@@ -41,7 +41,7 @@ $ git commit -m COMMIT
 $ git remote add origin <repo> # Where <repo> could be ssh://john@example.com/path/to/my-project.git 
 ```
 
-From a cloud repository
+From a __cloud__ repository
 ```sh
 $ git clone <repo> # Where <repo> could be ssh://john@example.com/path/to/my-project.git 
 $ git clone <repo> <directory> # Clone the repository located at <repo> into the folder called <directory> on the local machine
@@ -300,6 +300,22 @@ There are other options worth se checking:
 ```
 
 <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
